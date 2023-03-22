@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="weather-app-container">
+        <aside id="sidebar">
+            <h1 id="sidebar-h1"> Search For a City </h1>
+            <input type="text" id="city-search-bar">
+            <button id="city-search-button" onclick="SearchRequest()"> Submit </button>
+            <ul id="past-city-searches">
+                <!-- <li id="past-search-item"> test </li> -->
+            </ul>
+        </aside>
+        <div id="weather-header">
+            <!-- <h1 id="city-tag"> PlaceHolder</h1> -->
+            <!-- <p id="todays-temp"> temp</p>
+            <p id="todays-wind-speed"> temp</p>
+            <p id="todays-humidity">temp</p> -->
+        </div>
+        <div id="results-header-area"> 
+            <h1 id="results-area-h1"> 5 Day Forecast </h1>
+        </div>
+        <div id="results-area">
+            <div id="dynamic-forecast-cards">
+                <!-- <div id="day-1" class="weather-cards">
+                    <h1> date </h1>
+                    <p> temp</p>
+                    <p> wind</p>
+                    <p> humidity </p>
+                </div>
+                <div id="day-2" class="weather-cards">
+                    <h1> date </h1>
+                    <p> temp</p>
+                    <p> wind</p>
+                    <p> humidity </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/scripts/script.js"></script>
+</body>
+</html>
