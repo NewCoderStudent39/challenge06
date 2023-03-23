@@ -17,7 +17,7 @@ function getApiData(cityName) {
     let city = cityName;
     let requestURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
     clearSlate();
-    fetch(requestURL+city+'&appid='+APIKey+'&units=imperial')
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid='+APIKey+'&units=imperial')
         .then(function (response) {
             return response.json();
         })
