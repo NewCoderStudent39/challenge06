@@ -1,15 +1,25 @@
 const APIKey = "ef03fd351f5799cbdc7ebcd2f886b371";
+//add local storage back to the array
+//on load add to past searches from local and add back to the ul list
 var pastSearches = [];
-var hasRun = true; //repeats searches
+
 
 var searchHistoryList = document.getElementById('past-city-searches');
 var weatherheader = document.getElementById('weather-header');
 function SearchRequest ()
 {
     let search = document.getElementById('city-search-bar').value;
-    pastSearches.push(search);
-    console.log(search);
-    getApiData(search);
+    // pastSearches.push(search);
+    let value = search.toUpperCase();
+    if (pastSearches.includes(value) == true) {
+        console.log('duplicate');
+    }
+    else {
+        pastSearches.push(value);
+        //add to local storage
+    }
+    console.log(value);
+    getApiData(value);
     addToSearchHistory();
 }
 
@@ -60,39 +70,36 @@ function getApiData(cityName) {
                 weatherhumidity.innerText = `humidity is: ${data.list[i].main.humidity}%`;
                 weatherCard.appendChild(weatherhumidity);
             }
-            
         })
-
 }
 
-function addToSearchHistory () {
-    clearSlate ();
+function addToSearchHistory() {
+    console.log('add to search history');
+    searchHistoryList.innerHTML='';
     console.log('hi');
     console.log(pastSearches.length);
-    pastSearches.forEach(addToList)
+    pastSearches.forEach(addToList);
 }
 
 function addToList (item, index) {
+    console.log('add to list');
     let listElement = document.createElement('li');
     listElement.innerText=item;
     listElement.setAttribute('id', 'past-search-item');
     searchHistoryList.appendChild(listElement);
-    listElement.addEventListener('click', repeatSearch(item))
-
+    console.log(pastSearches);
+    // listElement.addEventListener('click', getApiData(item))
 }
 
-function repeatSearch(city) {
-    if (hasRun)
-    {
-        console.log('true')
-    }
-    else{
-        getApiData(city);
-    }
-}
 
-function clearSlate () {
-    searchHistoryList.innerHTML='';
+
+// function repeatSearch(city) {
+//     clearSlate();
+//     getApiData(city);
+// }
+
+function clearSlate() {
+    // searchHistoryList.innerHTML='';
     let cardsToClear = document.getElementById('dynamic-forecast-cards');
     while (cardsToClear.firstChild) {
         cardsToClear.removeChild(cardsToClear.firstChild);
@@ -102,3 +109,16 @@ function clearSlate () {
         headertoClear.removeChild(headertoClear.firstChild);
     }
 }
+
+console.log(pastSearches);
+
+searchHistoryList.addEventListener('click', function(event) {
+    if (searchHistoryList.firstChild) {
+        console.log('hello');
+        let search = event.target.innerHTML;
+        getApiData(search);
+    }
+    else {
+        console.log('something negative');
+    }
+})
